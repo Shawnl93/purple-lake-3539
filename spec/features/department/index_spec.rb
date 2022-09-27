@@ -12,11 +12,13 @@ RSpec.describe 'department index page' do
 
   it "department's name and floor" do
     visit "/departments"
-    expect(page).to have_content(@department_1.name)
-    expect(page).to have_content(@department_1.floor)
-    expect(page).to have_content(@department_2.name)
-    expect(page).to have_content(@department_2.floor)
-    expect(page).to have_content(@department_3.name)
-    expect(page).to have_content(@department_3.floor)
+    expect(page).to have_content("Department's name and floor")
+    expect(page).to have_content("Department: #{@department_1.name}")
+    expect(page).to have_content("Floor: #{@department_1.floor}")
+    expect(page).to have_content("Department: #{@department_2.name}")
+    expect(page).to have_content("Floor: #{@department_2.floor}")
+    expect(page).to have_content("Department: #{@department_3.name}")
+    expect(page).to have_content("Floor: #{@department_3.floor}")
+
   end
 end
