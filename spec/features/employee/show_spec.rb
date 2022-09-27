@@ -11,9 +11,11 @@ RSpec.describe 'employee show page' do
     @ticket_1 = Ticket.create!(subject: "printers broken", age: 5, open: true)
     @ticket_2 = Ticket.create!(subject: "computer broken", age: 1, open: true)
     @ticket_3 = Ticket.create!(subject: "mouse broken", age: 2, open: false)
+    @ticket_4 = Ticket.create!(subject: "idk whats broken", age: 10, open: true)
     @employee_ticket_1 = Employeeticket.create!(employee: @employee_1, ticket: @ticket_1)
     @employee_ticket_2 = Employeeticket.create!(employee: @employee_1, ticket: @ticket_2)
     @employee_ticket_3 = Employeeticket.create!(employee: @employee_1, ticket: @ticket_3)
+
 
   end
 
@@ -35,6 +37,21 @@ RSpec.describe 'employee show page' do
     expect(page).to_not have_content(@ticket_3.subject)
   end
 
+  it "does not show tickets that arent assigned" do
+    visit "/employees/#{@employee_1.id}"
+    expect(page).to_not have_content(@ticket_4.subject)
+  end
 
+  it "Form to add ticket" do
+    visit "/employees/#{@employee_1.id}"
+
+    expect(page).to have_content("Add a ticket:")
+    expect(page).to_not have_content(@ticket_4.subject)
+    fill_in :ticket_id, with: @ticket_4.id
+    click_button "Submit"
+    expect(current_path).to eq("/employees/#{@employee_1.id}")
+    expect(page).to have_content(@ticket_4.subject)
+
+  end
 
 end
