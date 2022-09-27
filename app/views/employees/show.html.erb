@@ -1,12 +1,6 @@
 <h1>Name: <%= @employee.name %> </h1>
 <h2>Department: <%= @employee.department.name %> </h2>
 <ol>
-  <% @employee.tickets.each do |ticket| %>
-  <li>Issue: <%= ticket.subject %> Age: <%= ticket.age %></li>
-  <% end %>
-</ol>
-
-<ol>
   <% @employee.sort_by_age.each do |ticket| %>
   <li>Issue: <%= ticket.subject %> Age: <%= ticket.age %></li>
   <% end %>
