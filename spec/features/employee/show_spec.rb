@@ -29,6 +29,12 @@ RSpec.describe 'employee show page' do
     expect(page).to have_content(@ticket_1.age)
   end
 
+  it "list only open ticket from oldest to youngest" do
+    visit "/employees/#{@employee_1.id}"
+    expect(@ticket_1.subject).to appear_before(@ticket_2.subject)
+    expect(page).to_not have_content(@ticket_3.subject)
+  end
+
 
 
 end
