@@ -5,3 +5,9 @@
   <li>Issue: <%= ticket.subject %> Age: <%= ticket.age %></li>
   <% end %>
 </ol>
+
+<ol>
+  <% @employee.sort_by_age.each do |ticket| %>
+  <li>Issue: <%= ticket.subject %> Age: <%= ticket.age %></li>
+  <% end %>
+</ol>
